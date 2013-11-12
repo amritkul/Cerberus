@@ -26,11 +26,13 @@ def funct(start, fin, thread_num):
 	for i in range (start, fin):
 		# print i
 		# print "thread: ", thread_num, " :   ", i, " - ", fin
-		total_checked += 1
+		
 		try:
 			cnn = 'http://money.cnn.com/quote/quote.html?symb=' + csv_arr[i][0]
 			cnn_soup = BeautifulSoup(urllib2.urlopen(cnn))
 			price_book = cnn_soup.find('td', text = "Price/Book").next_sibling.text
+			div_yield = cnn_soup.find('td', text = "Dividend yield").next_sibling.text
+			#total_checked += 1
 			# print price_book
 			if float(price_book) < 1:
 				companies.append([csv_arr[i][0], price_book])
@@ -41,7 +43,7 @@ def funct(start, fin, thread_num):
 				if mark_cap[-1:] == "M":
 					mark_cap_act = (int)(mark_cap_act * 1000000)
 				if mark_cap_act > 200*1000000:
-					print csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", csv_arr[i][1], " Progress: ", total_checked, " of 3250 checked."
+					print csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", div_yield, "   ",csv_arr[i][1], " Progress: ", total_checked, " of 3250 checked."
 					# f.write(csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", csv_arr[i][1], "\n")
 			if i % 20 == 0:
 				pass
@@ -61,3 +63,7 @@ def main():
 main()
 
 	# TODO : split by sector
+	# TODO : Growth Projections
+	# TODO : Sort options
+	# For alpha, the formula is:Return = (End_price + Dist_per_share - Start_price) / Start_price.
+	# For Beta Return = (End_price + Dist_per_share - Start_price) / Start_price.
