@@ -68,4 +68,3 @@ main()
 	# TODO : Growth Projections
 	# TODO : Sort options
 	# For alpha, the formula is:Return = (End_price + Dist_per_share - Start_price) / Start_price.
-	# TODO pull beta info from Nasdaq
