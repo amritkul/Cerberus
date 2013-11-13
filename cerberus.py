@@ -45,7 +45,8 @@ def funct(start, fin, thread_num):
                                 if mark_cap[-1:] == "M":
                                         mark_cap_act = (int)(mark_cap_act * 1000000)
                                 if mark_cap_act > 200*1000000:
-                                        print csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", div_yield, "   ",  " Beta =", beta, csv_arr[i][1], " Progress: ", i, " of 3250 checked."
+                                        print csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", div_yield, "   ", "Beta =", beta, csv_arr[i][1], " Progress: ", i, " of 3250 checked."
+                                        pass
                                         # f.write(csv_arr[i][0] , "   ", price_book, "   ", mark_cap, "   ", csv_arr[i][1], "\n")
                         if i % 20 == 0:
                                 pass
@@ -54,17 +55,14 @@ def funct(start, fin, thread_num):
                         pass
 
 def main():
-	ticker()
-	for u in range(0, len(csv_arr)/50):
-		# print u
-		Process(target = funct, args = (u * 50, (u + 1) * 50, u)).start()
-	# Process(target = funct, args = (0, 21)).start()
-	# p.start()
-	
+        ticker()
+        for u in range(0, len(csv_arr)/50):
+                # print u
+                Process(target = funct, args = (u * 50, (u + 1) * 50, u)).start()
+        # Process(target = funct, args = (0, 21)).start()
+        # p.start()
+        
 
 main()
 
-	# TODO : split by sector
-	# TODO : Growth Projections
-	# TODO : Sort options
-	# For alpha, the formula is:Return = (End_price + Dist_per_share - Start_price) / Start_price.
+        # TODO : split by sector
