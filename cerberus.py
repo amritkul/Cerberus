@@ -11,6 +11,14 @@ f = open('data.txt', 'w')
 csv_arr = []
 companies = []
 total_checked = 0
+companies_owned = {}
+
+def add_ticker():
+    print "enter ticker"
+    n=raw_input()
+    print "enter numberowned"
+    m=raw_input()
+    companies_owned[n]=m
 
 def ticker():
 	path = "companylist.csv"
@@ -19,6 +27,17 @@ def ticker():
 	for row in csv_reader:
 		csv_arr.append((row[0], row[1]))
 	# print csv_arr
+	while 1:
+                print "Enter Portfolio Information"
+                print "type name to search"
+                print "type 'add' to add companies or 'quit' to exit"
+                x=raw_input()
+                if x=='quit':
+                        break
+                if x in companies_owned.keys():
+                        print companies_owned[x], x
+                if x=='add':
+                        add_ticker()
 
 def funct(start, fin, thread_num):
 	print start, " - ", fin, ": ", thread_num, " Thread Started"
